@@ -236,47 +236,46 @@
 
         const storyParts = [
 
-            "I first noticed you when you became our student teacher. It was a rest day for our actual teacher, so a few students were picked to substitute.",
+    "I first noticed you when you became our student teacher. It was a rest day for our actual teacher, so a few students were picked to substitute.",
 
-            "I didn't really notice you on the first day because there were two other students with you. But on the second day, you were by yourself, and for some reason, that was when I noticed you.",
+    "I didn't really notice you on the first day because there were two other students with you. But on the second day, you were by yourself, and for some reason, that was when I noticed you.",
 
-            "I was sitting at the back while you were in front, and I kept looking at you because your eyes kept landing on me too. Every time you looked at me, I'd look away like I wasn't just staring at you. 😭",
+    "I was sitting at the back while you were in front, and I kept looking at you because your eyes kept landing on me too. Every time you looked at me, I'd look away like I wasn't just staring at you a second ago.",
 
-            "It sounds corny, but I guess that was kind of love at first sight for me. At first, I thought it was just a random little crush. I obviously didn't know it would go this far.",
+    "It sounds corny, but I guess that was kind of love at first sight for me. At first, I thought it was just a random little crush. I obviously didn't know it would go this far.",
 
-            "I told my friend about you, and luckily, she already knew you.",
+    "I told my friend about you, and luckily, she already knew you.",
 
-            "Then there was that school event where my friends somehow managed to set us up on a blind date. 😭",
+    "Then there was that school event where my friends somehow managed to set us up on a blind date.",
 
-            "You barely even knew me at that point, so I was insanely shy. But somehow, we actually clicked.",
+    "You barely even knew me at that point, so I was insanely shy. But somehow, we actually clicked.",
 
-            "After that, I sent you a friend request on Facebook. I honestly thought you weren't going to accept it, so when you did, I got the courage to message you.",
+    "After that, I sent you a friend request on Facebook. I honestly thought you weren't going to accept it, so when you did, I got the courage to message you.",
 
-            "You replied.",
+    "You replied.",
 
-            "And then I got shy again and basically did nothing. 😭",
+    "And then I got shy again and basically did nothing. HAHAHA.",
 
-            "We stopped talking for a while, but now you at least knew who I was, so seeing you somehow became even more embarrassing.",
+    "We stopped talking for a while, but now you at least knew who I was, so seeing you somehow became even more embarrassing.",
 
-            "Eventually, I asked you to eat out with me. I brought my friend because there was absolutely no way I was doing that alone.",
+    "Eventually, I asked you to eat out with me. I brought my friend because there was absolutely no way I was doing that alone.",
 
-            "We barely talked.",
+    "We barely talked.",
 
-            "Then on your birthday, I asked you to hang out by the sea. My friend came with us again.",
+    "Then on your birthday, I asked you to hang out by the sea. My friend came with us again.",
 
-            "We still barely talked. HAHAHA.",
+    "We still barely talked. HAHAHA.",
 
-            "But somehow, after those hangouts, we started talking more. We'd message each other afterward, say thank you, and slowly started getting closer.",
+    "But somehow, after those hangouts, we started talking more. We'd message each other afterward, say thank you, and slowly started getting closer.",
 
-            "Then came the notes.",
+    "Then came the notes.",
 
-            "Neither of us actually said anything, but we both knew what we were doing. Just two people throwing hints at each other and hoping the other person would get it. 😭",
+    "Neither of us actually said anything, but we both knew what we were doing. Just two people throwing hints at each other and hoping the other person would get it.",
 
-            "Eventually, we actually started talking regularly, mostly through chat.",
+    "Eventually, we actually started talking regularly, mostly through chat.",
 
-            "And now I'm here, waiting for the right time to ask you something."
-        ];
-
+    "And now I'm here, waiting for the right time to ask you something."
+];
         let current = 0;
 
         const story = document.getElementById("story");
@@ -347,72 +346,6 @@
         }
 
         showStory();
-
-    </script>
-
-</body>
-</html>
-        @keyframes pop {
-            from {
-                transform: scale(0.7);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="card">
-
-        <div class="heart">💛</div>
-
-        <h1>Hey... 👀</h1>
-
-        <p>
-            alam mo naman na gusto kita HAHAHA.
-            ewan ko lang kung paano ko sisimulan ‘to, pero gusto ko sana itanong...
-            <br><br>
-            Pwede ba kitang ligawan? :))
-        </p>
-
-        <button id="yes" onclick="yes()">YES </button>
-
-        <button id="no">NO </button>
-
-        <div id="message"></div>
-
-    </div>
-
-    <script>
-
-        const no = document.getElementById("no");
-
-        no.addEventListener("mouseover", moveNo);
-        no.addEventListener("touchstart", moveNo);
-
-        function moveNo() {
-
-            no.style.position = "fixed";
-
-            no.style.left =
-                Math.random() * (window.innerWidth - no.offsetWidth) + "px";
-
-            no.style.top =
-                Math.random() * (window.innerHeight - no.offsetHeight) + "px";
-        }
-
-        function yes() {
-
-            document.getElementById("message").innerHTML =
-                "NO WAY?! 😳";
-
-        }
 
     </script>
 
