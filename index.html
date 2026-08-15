@@ -1,145 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>something i wanted to tell you</title>
+    <title>for you</title>
 
     <style>
+        :root {
+            --bg: #fff3b0;
+            --yellow: #ffd54f;
+            --yellow-dark: #b88d00;
+            --text: #59482a;
+            --soft-text: #9a8456;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
         }
 
         body {
             min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(-45deg, #FFD93D, #FFE66D, #FFF1A8, #FFD54F);
-            background-size: 400% 400%;
-            animation: backgroundMove 10s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             overflow: hidden;
+
+            background: linear-gradient(
+                135deg,
+                #fff5ba,
+                #ffd95a,
+                #fff9d8
+            );
+
+            background-size: 300% 300%;
+            animation: bgMove 10s ease infinite;
+
+            color: var(--text);
         }
 
-        .card {
-            width: 100%;
-            max-width: 560px;
-            min-height: 540px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            padding: 45px 32px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            position: relative;
-            z-index: 2;
-            animation: appear 1s ease;
+        button {
+            font-family: inherit;
         }
 
-        .top-text {
-            font-size: 13px;
-            letter-spacing: 2px;
-            color: #9E7A3A;
-            margin-bottom: 25px;
-        }
+        /* MUSIC */
 
-        #story {
-            min-height: 330px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #5D4037;
-            font-size: 18px;
-            line-height: 1.9;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        #story.show {
-            opacity: 1;
-        }
-
-        #nextBtn {
-            margin-top: 15px;
-            border: none;
-            background: #FFC107;
-            color: #4E342E;
-            padding: 13px 27px;
-            border-radius: 30px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #nextBtn:hover {
-            transform: scale(1.08);
-            background: #FFB300;
-        }
-
-        #musicBtn {
+        .music-control {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 5;
+            top: 18px;
+            right: 18px;
+
+            z-index: 30;
+
             border: none;
+            border-radius: 22px;
+
+            padding: 9px 16px;
+
             background: rgba(255, 255, 255, 0.9);
-            color: #5D4037;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
+            color: var(--text);
+
+            font-size: 13px;
             cursor: pointer;
-            font-size: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-            transition: 0.3s;
+
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+
+            transition: 0.25s;
         }
 
-        #musicBtn:hover {
-            transform: scale(1.1);
+        .music-control:hover {
+            transform: scale(1.05);
         }
 
-        .heart {
+        /* FLOATING PARTICLES */
+
+        .particle {
             position: fixed;
-            bottom: -40px;
-            font-size: 22px;
-            opacity: 0.6;
-            z-index: 1;
+            bottom: -30px;
+
+            pointer-events: none;
+
+            opacity: 0.45;
+
             animation: floatUp linear infinite;
         }
 
-        .h1 {
+        .p1 {
             left: 8%;
             animation-duration: 8s;
         }
 
-        .h2 {
-            left: 25%;
-            animation-duration: 11s;
+        .p2 {
+            left: 24%;
+            animation-duration: 10s;
             animation-delay: 2s;
         }
 
-        .h3 {
-            left: 55%;
+        .p3 {
+            left: 47%;
             animation-duration: 9s;
             animation-delay: 1s;
         }
 
-        .h4 {
-            left: 80%;
-            animation-duration: 12s;
+        .p4 {
+            left: 69%;
+            animation-duration: 11s;
             animation-delay: 3s;
         }
 
-        .h5 {
-            left: 95%;
-            animation-duration: 10s;
+        .p5 {
+            left: 89%;
+            animation-duration: 8s;
             animation-delay: 4s;
         }
 
-        @keyframes backgroundMove {
+        /* OPENING */
+
+        #openingScreen {
+            width: 100%;
+            height: 100vh;
+
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            animation: appear 0.8s ease;
+        }
+
+        .opening-text {
+            position: absolute;
+            top: 10%;
+
+            text-align: center;
+
+            padding: 0 20px;
+        }
+
+        .opening-text h1 {
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .opening-text p {
+            margin-top: 8px;
+            font-size: 15px;
+            opacity: 0.7;
+        }
+
+        /* ENVELOPE */
+
+        .envelope-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            cursor: pointer;
+        }
+
+        .envelope {
+            position: relative;
+
+            width: 270px;
+            height: 175px;
+
+            background: #fff7c8;
+
+            border-radius: 0 0 14px 14px;
+
+            box-shadow:
+                0 16px 35px rgba(0, 0, 0, 0.14);
+
+            transition: transform 0.35s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.04);
+        }
+
+        .envelope-flap {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left: 135px solid transparent;
+            border-right: 135px solid transparent;
+            border-top: 92px solid var(--yellow);
+
+            z-index: 4;
+
+            transform-origin: top center;
+
+            transition: transform 0.7s ease;
+        }
+
+        .envelope-bottom {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 95px;
+
+            overflow: hidden;
+
+            border-radius: 0 0 14px 14px;
+
+            z-index: 3;
+        }
+
+        .envelope-bottom::before {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: 20px;
+
+            transform: translateX(-50%);
+
+            width: 0;
+            height: 0;
+
+            border-left: 135px solid transparent;
+            border-right: 135px solid transparent;
+            border-bottom: 95px solid #fff1a7;
+        }
+
+        .seal {
+            position: absolute;
+
+            left: 50%;
+            top: 68px;
+
+            transform: translateX(-50%);
+
+            font-size: 34px;
+
+            z-index: 6;
+
+            animation: pulse 1.5s infinite;
+
+            transition: opacity 0.3s ease;
+        }
+
+        .open-hint {
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            color: var(--yellow-dark);
+
+            animation: bob 1.5s ease-in-out infinite;
+        }
+
+        .envelope.hit {
+            animation: envelopeHit 0.5s ease;
+        }
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope.open .seal {
+            opacity: 0;
+        }
+
+        /* STORY */
+
+        #storyScreen {
+            display: none;
+
+            width: 92%;
+            max-width: 650px;
+
+            margin: auto;
+
+            padding: 42px 34px;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.13);
+
+            animation: appear 0.8s ease;
+
+            position: relative;
+            z-index: 15;
+        }
+
+        .story-title {
+            margin-bottom: 26px;
+
+            color: var(--yellow-dark);
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+        }
+
+        #story {
+            min-height: 340px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0 8px;
+
+            opacity: 0;
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+
+            transform: translateY(8px);
+        }
+
+        #story.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-text {
+            max-width: 540px;
+
+            color: var(--text);
+
+            font-size: 20px;
+
+            line-height: 1.75;
+
+            font-weight: 500;
+        }
+
+        .inner-thought {
+            max-width: 500px;
+
+            margin-top: 14px;
+
+            color: var(--soft-text);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            font-style: italic;
+
+            opacity: 0.9;
+        }
+
+        .emphasis .main-text {
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .emphasis .inner-thought {
+            font-size: 13px;
+        }
+
+        .next-btn {
+            margin-top: 18px;
+
+            border: none;
+            border-radius: 24px;
+
+            padding: 12px 23px;
+
+            background: var(--yellow);
+
+            color: #5d480e;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.07);
+        }
+
+        /* QUESTION */
+
+        #questionScreen {
+            display: none;
+
+            width: 92%;
+            max-width: 560px;
+
+            margin: auto;
+
+            padding: 44px 30px;
+
+            background: rgba(255, 255, 255, 0.97);
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.13);
+
+            animation: appear 0.8s ease;
+
+            z-index: 15;
+        }
+
+        .question-icon {
+            font-size: 48px;
+
+            margin-bottom: 15px;
+
+            animation: pulse 1.5s infinite;
+        }
+
+        #questionScreen h1 {
+            font-size: 28px;
+
+            margin-bottom: 18px;
+        }
+
+        #questionScreen p {
+            font-size: 18px;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .yes-btn,
+        .think-btn {
+            border: none;
+
+            border-radius: 25px;
+
+            padding: 13px 25px;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .yes-btn {
+            background: var(--yellow);
+
+            color: #5d480e;
+        }
+
+        .think-btn {
+            background: #ededed;
+
+            color: #555;
+        }
+
+        .yes-btn:hover,
+        .think-btn:hover {
+            transform: scale(1.06);
+        }
+
+        #response {
+            margin-top: 24px;
+
+            color: var(--yellow-dark);
+
+            font-size: 18px;
+
+            line-height: 1.6;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+        @keyframes envelopeHit {
+            0% {
+                transform: translateX(0);
+            }
+
+            30% {
+                transform: translateX(8px) rotate(1deg);
+            }
+
+            60% {
+                transform: translateX(-8px) rotate(-1deg);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bob {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(5px);
+            }
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.45;
+            }
+
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(22px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes bgMove {
             0% {
                 background-position: 0% 50%;
             }
@@ -153,49 +578,57 @@
             }
         }
 
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(25px) scale(0.97);
+        @media (max-width: 700px) {
+
+            .opening-text h1 {
+                font-size: 22px;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes floatUp {
-            from {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
+            .envelope {
+                width: 220px;
+                height: 145px;
             }
 
-            20% {
-                opacity: 0.6;
+            .envelope-flap {
+                border-left-width: 110px;
+                border-right-width: 110px;
+                border-top-width: 75px;
             }
 
-            to {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
+            .envelope-bottom::before {
+                border-left-width: 110px;
+                border-right-width: 110px;
+                border-bottom-width: 80px;
             }
-        }
 
-        @media (max-width: 600px) {
-            .card {
-                min-height: 520px;
-                padding: 35px 24px;
+            .seal {
+                top: 55px;
+                font-size: 28px;
             }
 
             #story {
-                font-size: 16px;
-                line-height: 1.8;
-                min-height: 300px;
+                min-height: 380px;
             }
 
-            #musicBtn {
-                top: 15px;
-                right: 15px;
+            .main-text {
+                font-size: 17px;
+                line-height: 1.75;
+            }
+
+            .inner-thought {
+                font-size: 13px;
+            }
+
+            .emphasis .main-text {
+                font-size: 22px;
+            }
+
+            #questionScreen h1 {
+                font-size: 24px;
+            }
+
+            #questionScreen p {
+                font-size: 16px;
             }
         }
     </style>
@@ -203,126 +636,406 @@
 
 <body>
 
-    <!-- Background music -->
-    <!-- Put your music file in the same folder and name it song.mp3 -->
+    <!-- MUSIC -->
     <audio id="music" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="musicBtn" onclick="toggleMusic()">🎵</button>
+    <button
+        class="music-control"
+        id="musicBtn"
+        onclick="toggleMusic()">
+        🎵 play music
+    </button>
 
-    <!-- Floating hearts -->
-    <div class="heart h1">💛</div>
-    <div class="heart h2">♡</div>
-    <div class="heart h3">💛</div>
-    <div class="heart h4">♡</div>
-    <div class="heart h5">💛</div>
+    <!-- FLOATING PARTICLES -->
+    <div class="particle p1">💛</div>
+    <div class="particle p2">♡</div>
+    <div class="particle p3">✦</div>
+    <div class="particle p4">💛</div>
+    <div class="particle p5">♡</div>
 
-    <div class="card">
+    <!-- OPENING -->
+    <section id="openingScreen">
 
-        <div class="top-text">
-            something i wanted to tell you
+        <div class="opening-text">
+            <h1>i made something for you</h1>
+            <p>click the envelope</p>
+        </div>
+
+        <div
+            class="envelope-wrapper"
+            onclick="openEnvelope()">
+
+            <div class="envelope" id="envelope">
+
+                <div class="envelope-flap"></div>
+
+                <div class="envelope-bottom"></div>
+
+                <div class="seal">
+                    💛
+                </div>
+
+            </div>
+
+            <div class="open-hint">
+                open me ↑
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STORY -->
+    <section id="storyScreen">
+
+        <div class="story-title">
+            okay, so...
         </div>
 
         <div id="story"></div>
 
-        <button id="nextBtn" onclick="nextStory()">
-            continue
+        <button
+            class="next-btn"
+            id="nextBtn"
+            onclick="nextStory()">
+            continue →
         </button>
 
-    </div>
+    </section>
+
+    <!-- QUESTION -->
+    <section id="questionScreen">
+
+        <div class="question-icon">
+            💛
+        </div>
+
+        <p>
+            so... here’s what i’ve been trying to ask.
+            <br><br>
+
+            i like you, and i think you already know that.
+            <br><br>
+
+            i just wanted to ask you properly.
+            <br><br><br>
+
+            would you let me court you?
+        </p>
+
+        <div class="buttons">
+
+            <button
+                class="yes-btn"
+                onclick="sendAnswer('yes')">
+                yes 💛
+            </button>
+
+            <button
+                class="think-btn"
+                onclick="sendAnswer('no')">
+                no
+            </button>
+
+        </div>
+
+        <div id="response"></div>
+
+    </section>
 
     <script>
 
-        const storyParts = [
+        const messages = [
 
-    "I first noticed you when you became our student teacher. It was a rest day for our actual teacher, so a few students were picked to substitute.",
+            {
+                text: "okay, i tried making this whole long story about how i started liking you.",
+                thought: null,
+                emphasis: false
+            },
 
-    "I didn't really notice you on the first day because there were two other students with you. But on the second day, you were by yourself, and for some reason, that was when I noticed you.",
+            {
+                text: "then i read it again and thought, ang corny pala. HAHAHA.",
+                thought: null,
+                emphasis: false
+            },
 
-    "I was sitting at the back while you were in front, and I kept looking at you because your eyes kept landing on me too. Every time you looked at me, I'd look away like I wasn't just staring at you a second ago.",
+            {
+                text: "so i'll just tell you how it happened.",
+                thought: "('wag ka ma-cringe pls 😖.)",
+                emphasis: false
+            },
 
-    "It sounds corny, but I guess that was kind of love at first sight for me. At first, I thought it was just a random little crush. I obviously didn't know it would go this far.",
+            {
+                text: "I first saw you when you were one of the students watching over our class that day.",
+                thought: null,
+                emphasis: false
+            },
 
-    "I told my friend about you, and luckily, she already knew you.",
+            {
+                text: "I didn't really notice you at first. On the first day, there were two other students with you, so I guess I just didn't pay much attention.",
+                thought: null,
+                emphasis: false
+            },
 
-    "Then there was that school event where my friends somehow managed to set us up on a blind date.",
+            {
+                text: "But on the second day, you were by yourself, and that was when I started noticing you.",
+                thought: "(gumanon)",
+                emphasis: true
+            },
 
-    "You barely even knew me at that point, so I was insanely shy. But somehow, we actually clicked.",
+            {
+                text: "I was sitting at the back while you were in front, and I kept looking at you because your eyes kept landing on mine too.",
+                thought: "(sorry, assuming lang ✌️.)",
+                emphasis: false
+            },
 
-    "After that, I sent you a friend request on Facebook. I honestly thought you weren't going to accept it, so when you did, I got the courage to message you.",
+            {
+                text: "I didn't think much of it at first. I just noticed you that day, and somehow, I kept thinking about you after that.",
+                thought: "(baduy ma-inlove)",
+                emphasis: false
+            },
 
-    "You replied.",
+            {
+                text: "I told my friend about you, and luckily, she already knew you.",
+                thought: "(hihi)",
+                emphasis: false
+            },
 
-    "And then I got shy again and basically did nothing. HAHAHA.",
+            {
+                text: "After that, I started seeing you around more often, even though you still didn't really know me.",
+                thought: null,
+                emphasis: false
+            },
 
-    "We stopped talking for a while, but now you at least knew who I was, so seeing you somehow became even more embarrassing.",
+            {
+                text: "Then there was this school event where my friends decided to set us up on a blind date.",
+                thought: "(love you, guys.)",
+                emphasis: true
+            },
 
-    "Eventually, I asked you to eat out with me. I brought my friend because there was absolutely no way I was doing that alone.",
+            {
+                text: "You barely even knew me at that point, so of course I was nervous. I also didn't know what you were going to think, especially since I'm a girl.",
+                thought: "(kunware ayaw, papilit naman.)",
+                emphasis: false
+            },
 
-    "We barely talked.",
+            {
+                text: "After that, I sent you a friend request on Facebook. I honestly didn't expect you to accept it, so when you did, I got the courage to message you.",
+                thought: "(tapang.)",
+                emphasis: false
+            },
 
-    "Then on your birthday, I asked you to hang out by the sea. My friend came with us again.",
+            {
+                text: "You replied.",
+                thought: "(🤭.)",
+                emphasis: true
+            },
 
-    "We still barely talked. HAHAHA.",
+            {
+                text: "After that, we didn't really talk again for a while. But at least you knew who I was now, which somehow made seeing you in person even more awkward.",
+                thought: "(lalong nahiya ih.)",
+                emphasis: false
+            },
 
-    "But somehow, after those hangouts, we started talking more. We'd message each other afterward, say thank you, and slowly started getting closer.",
+            {
+                text: "By then, I knew I wanted to see you again, so I eventually asked you to eat out with me. I brought my friend because there was no way I was going alone.",
+                thought: "(kailangan ng moral support 👥.)",
+                emphasis: false
+            },
 
-    "Then came the notes.",
+            {
+                text: "We barely talked that whole time. You and my friend ended up talking more, while I was mostly just sitting there.",
+                thought: "(third wheel sa sariling lakad eh.)",
+                emphasis: true
+            },
 
-    "Neither of us actually said anything, but we both knew what we were doing. Just two people throwing hints at each other and hoping the other person would get it.",
+            {
+                text: "Then on your birthday, I asked you to hang out by the sea. Of course, my friend came with us again.",
+                thought: "(syempre, may moral support ulit.)",
+                emphasis: false
+            },
 
-    "Eventually, we actually started talking regularly, mostly through chat.",
+            {
+                text: "And somehow, we still barely talked. HAHAHA.",
+                thought: "(ayun lang.)",
+                emphasis: true
+            },
 
-    "And now I'm here, waiting for the right time to ask you something."
-];
-        let current = 0;
+            {
+                text: "After those hangouts, we still didn't really talk that much. The only time we'd really talk was after hanging out, usually just to thank each other for the time together.",
+                thought: null,
+                emphasis: false
+            },
 
-        const story = document.getElementById("story");
-        const nextBtn = document.getElementById("nextBtn");
-        const music = document.getElementById("music");
-        const musicBtn = document.getElementById("musicBtn");
+            {
+                text: "Then came the notes.",
+                thought: "(woohoo, exciting part na 🤩.)",
+                emphasis: true
+            },
 
-        function showStory() {
+            {
+                text: "Neither of us really said anything directly, but I think we both knew what we were doing.",
+                thought: "(labanan ng parinigan 👊.)",
+                emphasis: false
+            },
 
-            story.classList.remove("show");
+            {
+                text: "Eventually, we started talking, mostly through chat.",
+                thought: null,
+                emphasis: false
+            },
+
+            {
+                text: "Fast forward a little, I started hanging out at your place too. I still brought my friends with me because I was still shy around you.",
+                thought: "(hindi pa rin kaya solo.)",
+                emphasis: false
+            },
+
+            {
+                text: "And somewhere along the way, this stopped being a small crush.",
+                thought: "(naku po.)",
+                emphasis: true
+            },
+
+            {
+                text: "I'm just waiting for the right time to finally ask you properly.",
+                thought: "(okay, this is it pansit.)",
+                emphasis: true
+            }
+        ];
+
+        let currentMessage = 0;
+
+        const envelope =
+            document.getElementById("envelope");
+
+        const openingScreen =
+            document.getElementById("openingScreen");
+
+        const storyScreen =
+            document.getElementById("storyScreen");
+
+        const questionScreen =
+            document.getElementById("questionScreen");
+
+        const story =
+            document.getElementById("story");
+
+        const nextBtn =
+            document.getElementById("nextBtn");
+
+        const music =
+            document.getElementById("music");
+
+        const musicBtn =
+            document.getElementById("musicBtn");
+
+        function openEnvelope() {
+
+            envelope.classList.add("hit");
+
+            setTimeout(() => {
+                envelope.classList.add("open");
+            }, 500);
 
             setTimeout(() => {
 
-                story.textContent = storyParts[current];
+                openingScreen.style.display = "none";
 
+                storyScreen.style.display = "block";
+
+                currentMessage = 0;
+                showMessage();
+
+            }, 1200);
+        }
+
+        function showMessage() {
+
+            const item = messages[currentMessage];
+
+            story.classList.remove("show");
+            story.classList.remove("emphasis");
+
+            story.innerHTML = "";
+
+            if (item.emphasis) {
+                story.classList.add("emphasis");
+            }
+
+            const main =
+                document.createElement("div");
+
+            main.className = "main-text";
+            main.textContent = item.text;
+
+            story.appendChild(main);
+
+            if (item.thought) {
+
+                const thought =
+                    document.createElement("div");
+
+                thought.className =
+                    "inner-thought";
+
+                thought.textContent =
+                    item.thought;
+
+                story.appendChild(thought);
+            }
+
+            requestAnimationFrame(() => {
                 story.classList.add("show");
+            });
+        }
 
-            }, 500);
+        function sendAnswer(answer) {
+
+            const instagramUsername = "xamighs";
+
+            if (answer === "yes") {
+
+                document.getElementById("response").innerHTML =
+                    "send me a message on IG and tell me your answer 💛";
+
+            } else {
+
+                document.getElementById("response").innerHTML =
+                    "send me a message on IG and tell me your answer.";
+
+            }
+
+            setTimeout(() => {
+
+                window.open(
+                    "https://www.instagram.com/" + instagramUsername,
+                    "_blank"
+                );
+
+            }, 1000);
         }
 
         function nextStory() {
 
-            current++;
+            currentMessage++;
 
-            if (current < storyParts.length) {
+            if (currentMessage < messages.length) {
 
-                showStory();
+                showMessage();
 
-                if (current === storyParts.length - 1) {
-                    nextBtn.textContent = "keep going";
+                if (currentMessage === messages.length - 1) {
+                    nextBtn.textContent =
+                        "one last thing →";
                 }
 
             } else {
 
-                story.classList.remove("show");
+                storyScreen.style.display = "none";
 
-                setTimeout(() => {
-
-                    story.innerHTML =
-                        "that's pretty much how it all started.<br><br>" +
-                        "and now, I'm still here, waiting for the right time to tell you what I've been wanting to say. 💛";
-
-                    story.classList.add("show");
-
-                    nextBtn.style.display = "none";
-
-                }, 500);
+                questionScreen.style.display = "block";
             }
         }
 
@@ -332,22 +1045,29 @@
 
                 music.play()
                     .then(() => {
-                        musicBtn.textContent = "🔊";
+
+                        musicBtn.textContent =
+                            "🔊 playing";
+
                     })
                     .catch(() => {
-                        alert("Tap the button again to play the music.");
+
+                        musicBtn.textContent =
+                            "🎵 play music";
+
                     });
 
             } else {
 
                 music.pause();
-                musicBtn.textContent = "🎵";
+
+                musicBtn.textContent =
+                    "🎵 play music";
             }
         }
-
-        showStory();
 
     </script>
 
 </body>
+
 </html>
